@@ -1,23 +1,23 @@
 import Head from 'next/head';
-import P5Sketch from '../components/P5Sketch';
+import dynamic from 'next/dynamic';
+
+const DynamicMazeGenerator = dynamic(
+  () => import('../components/MazeGenerator'),
+  { ssr: false }
+);
 
 const HomePage = () => {
   return (
     <div>
       <Head>
-        <title>My p5.js Next.js App</title>
-        <meta name='description' content='p5.js Next.js application' />
-        <link rel='icon' href='/favicon.ico' />
+        <title>Maze Generator</title>
       </Head>
-
-      <main>
-        <h1>Welcome to my p5.js Next.js App</h1>
-        <P5Sketch />
+      <main className='flex flex-col min-h-screen items-center justify-center'>
+        <h1 className='my-3 text-2xl font-medium text-emerald-500'>
+          Maze Generator
+        </h1>
+        <DynamicMazeGenerator />
       </main>
-
-      <footer>
-        <p>Created with love by Your Name</p>
-      </footer>
     </div>
   );
 };
